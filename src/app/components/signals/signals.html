@@ -1,0 +1,118 @@
+<!-- <h2>Using signals we can tell angular when to update the ui and where to update ui
+
+</h2>
+<p>we need min angular version 16 and later version to use signals</p>
+
+<hr>
+<h2>How angular is updating the counter value when we click on the - and + button ?</h2>
+<p>answer is it uses change detection cycle (cdc)</p>
+<p> Whenever the value of a property in the angular app changes angular runs cdc</p>
+<p>and using cdc it identifes if data has changed or not</p>
+<p>if data has changed angular update the ui with the updated value</p>
+<hr>
+<h2>When angular will run cdc ?</h2>
+<p>we have binded click event on - and + buttons </p>
+<p>when we click any of these buttons angular runs cdc to check if the value of a property has changed or not ( angular
+    runs cdc
+    and checks counter property changed or not if value has changed it will update the counter value and also render the
+    updated value in the ui
+    ) </p>
+<p> Whenever the value of a property in the angular app changes angular runs cdc</p>
+<hr>
+<h2>So when we click on these buttons it is going to call cdc in order to check if something has changed in the angular
+    application or not
+    if some thing has changed angular will update the ui with that change
+    this is the expected behaviour
+</h2>
+
+problem is angular is running cdc everytime when click on button but if it does nt change the value or data in that case
+also
+angular is runnning cdc
+
+<hr>
+we are not decrementing the value when we
+click on this event we are not decrementing the counter value property
+
+when i click on this - button counter value not changed but still cdc runs.
+no data has changed in the angular application but still cdc is running this is the major drawback which leads
+to performance of the angular application
+
+<hr>
+
+<h2>How to create signal
+
+</h2>
+<p> counter =signal(0); //creating a signal as initial value we ar passing 0 this is rightable signal</p>
+
+<hr>
+<h2>How to update signal
+
+</h2>
+<p> to update the value of a signal, we need to call a method on the signal object.For that angular provides us three
+    methods
+
+    <b> Set()
+        Update()
+        Mutate()</b>
+    <hr> -->
+<!-- Use when ever not using signals performing cdc  -->
+<!-- <div style="height:100px;width:80%;margin:auto;" class="ws-grey w3-display-container">
+
+    <button type="button" class="btn btn-secondary" (click)="decrement()">-</button>&nbsp;
+    <span>{{counter}}</span>&nbsp;
+    <button type="button" class="btn btn-secondary" (click)="increment()">+</button>
+
+    <button type="button" class="btn btn-secondary" (click)="0">-</button>
+
+</div> -->
+<!-- Use when ever not using signals performing cdc  -->
+
+<!-- Use when ever using signals-->
+
+<br>
+<!-- <div style="height:100px;width:80%;margin:auto;" class="ws-grey w3-display-container">
+
+    <button type="button" class="btn btn-secondary" (click)="decrement()">-</button>&nbsp;
+    <span>{{counter()}}</span>&nbsp;
+    <button type="button" class="btn btn-secondary" (click)="increment()">+</button>
+
+</div>
+<div>
+</div> -->
+
+<!-- Use when ever using signals-->
+<div style="height:100px;width:80%;margin:auto;" class="ws-grey w3-display-container">
+    <button type="button" class="btn btn-secondary" (click)="minusFunction()">-</button>&nbsp;
+    <span>{{countervalue()}} &nbsp; {{doubleCounter()}}</span>&nbsp;
+    <button type="button" class="btn btn-secondary" (click)="plusFunction()">+</button>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <!-- <th>Index</th> -->
+            <th>Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of messages(); track $index) {
+        <tr>
+            <!-- <td>
+                {{ $index}}
+            </td> -->
+            <td>
+                {{ item}}
+            </td>
+        </tr>
+        }
+        @empty {
+        <tr>
+            <td colspan="3" class="text-center text-muted py-4">
+                <i class="bi bi-inbox d-block fs-3 mb-2"></i>
+                No messages available.
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<!-- Use when ever using signals-->

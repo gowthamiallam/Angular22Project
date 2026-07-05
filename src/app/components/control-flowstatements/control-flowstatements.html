@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-3">
+        @if(isdivVisible == true){
+        <div class="bg-primary p-4">
+            Control flow statements are introduced in angular 17 after deprication using for if
+            To hide and show use the Control flow statement if
+            To iterate the list of items use for
+        </div>
+        }
+    </div>
+    <div class="col-3">
+        <input type="checkbox" [(ngModel)]="isOffer">Is Offer Code Available
+        @if(isOffer){
+        <input type="text" placeholder="Enter Code">
+        } @else{
+        <p>No offer code needed</p>
+        }
+
+    </div>
+    <div class="col-3">
+        @if(orderStatus == "new"){
+        <h3>Order Placed</h3>
+        } @else if(orderStatus =="ship"){
+        <h3>Order Shipped</h3>
+        } @else if(orderStatus =="deliver"){
+        <h3>Order Delivered</h3>
+        } @else{
+        <h3 class="text-danger">Order Failed</h3>
+        }
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-warning" (click)="toggle()">Toogle</button> {{isdivVisible}}
+    </div>
+</div>
+<hr>
+//for to iterate the list of items
+<div class="row">
+    <div class="col-3">
+        <ul>
+            @for(item of cityList; track $index){
+            <li>
+                {{item}}
+            </li>
+            }
+            @empty {
+            No Data
+            }
+        </ul>
+    </div>
+    <div class="col-3">
+        @for(item of cityList; track $index){
+        <button class="btn btn-success mt-2 mx-2">{{item}}</button>
+        }
+        @empty {
+        No Data
+        }
+    </div>
+    <div class="col-3">
+        <select class="form-select">
+            <option>Select</option>
+            @for(item of cityList; track $index){
+            <option>{{item}}</option>
+            }
+            @empty {
+            No Data
+            }
+        </select>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th> S.No</th>
+                    <th> Name </th>
+                    <th> City</th>
+                    <th>Roll No</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(item of studentList; track $index){
+                <tr>
+                    <td>
+                        {{$index +1}}
+                    </td>
+                    <td>
+                        {{item.name}}
+                    </td>
+                    <td>
+                        {{item.city}}
+                    </td>
+                    <td>
+                        {{item.rollNo}}
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-3">
+        <select class="form-select" [(ngModel)]="selectedStudent">
+            <option value="">Select</option>
+            @for(item of studentList;track $index){
+            <option value={{item.stuid}}>
+                {{item.name}}
+            </option>
+            }
+        </select>
+    </div>
+    <div class="col-2">
+        Selected Student id ==>{{selectedStudent}}
+    </div>
+</div>
+<!-- [value]="item.stuid" -->
+<hr>
+<div class="row">
+    @for(item of studentList;track $index){
+    <div class="col-3 mt-2">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{item.name}}</h4>
+                <p class="card-text">{{item.rollNo}}</p>
+                <a href="#" class="card-link">Edit</a>
+                <a href="#" class="card-link">Delete</a>
+            </div>
+        </div>
+
+
+    </div>
+    }
+</div>
