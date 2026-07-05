@@ -1,0 +1,2 @@
+# Angular22Project
+CreatingAngularProjectusing22version
