@@ -39,6 +39,42 @@ export const routes: Routes = [
         component: ControlFlowstatements
     },
     {
+        path: 'dashboard',
+        // The component is only downloaded when the user visits /dashboard
+        //please see the network for understanding how it is downloading and the bundles too
+        loadComponent: () => import('./components/dashboard/dashboard').then(m => m.Dashboard)
+    },
+    // {
+    //     path: 'admin',
+    //     loadComponent: () => import('./components/admin/admin').then(m => m.Admin)
+    // },
+    // If you have an entire feature section(like an / admin panel with multiple sub - pages) and all of them are standalone components, you can lazy load their child routes together using children.
+    {
+        path: 'admin',
+        // 1. Lazy load the main Admin Shell Component
+        loadComponent: () => import('./components/admin/admin').then(m => m.Admin),
+
+        // 2. Define the sub-routes (settings and profile) inside children
+        children: [
+            {
+                path: '',
+                // Bounces /admin directly to /admin/profile by default
+                redirectTo: 'profile',
+                pathMatch: 'full'
+            },
+            {
+                path: 'profile',
+                // Lazy load the Profile Component
+                loadComponent: () => import('./components/admin/admin-profile/admin-profile').then(m => m.AdminProfile)
+            },
+            {
+                path: 'settings',
+                // Lazy load the Settings Component
+                loadComponent: () => import('./components/admin/admin-settings/admin-settings').then(m => m.AdminSettings)
+            }
+        ]
+    },
+    {
         path: '**',           //this is WildCard  route
         component: PageNotfound  //if the route doesnt match in the url we need to navigate to page not found comp
     }
