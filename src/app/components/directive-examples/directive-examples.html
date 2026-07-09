@@ -1,1 +1,112 @@
-<p>directive-examples works!</p>
+<h1>Definition of Directive :</h1>
+<p>Directive has some functionality written and it will do
+</p>
+<ul>
+    <li>
+        create new element
+    </li>
+    <li>
+        modify new element
+    </li>
+    <li>
+        modify the existing behaviour of element also
+    </li>
+</ul>
+
+<ul>
+    <li style="background-color: green;">
+        When we you want to go for dynamic class go for ng class
+        <hr>
+        class="p-4 bg-success" or class="p-4 bg-danger" will come when you inspect it means class is changing
+        dynamically on clicking
+    </li>
+    <li style="background-color: green;">
+        when ever you want to go for dynamic css gor for ng style
+        <hr>
+        style="background-color: red; height: 200px; width: 200px;"
+        or
+        style="background-color: green; height: 200px; width: 200px;" will come when you inspect it means style is
+        changing dynamically on clicking
+    </li>
+</ul>
+
+
+//structural directives
+//attribute directives =>we can add Dynamic class and dynamic css
+<hr>
+
+<!--  //adding dynamic class in 24 line using ngClass -->
+<div class="row">
+    <div class="col-3">
+        <div class="p-4" [ngClass]="divclassName">
+            DIV 1
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="p-3" [ngClass]="isCheckActive == true ? 'bg-primary' :'bg-warning'">
+            DIV 2
+        </div>
+    </div>
+    <div class="col-3">
+        <input type="text" placeholder="Enter 5 characters only" class="form-control" [(ngModel)]="num1">
+        <h1 [ngClass]="num1.length > 5 ?'text-danger' :'text-success'">
+            {{num1.length > 5 ?'Text is invalid' :'Text is valid'}}
+        </h1>
+    </div>
+    <div class="col-3">
+        <input type="text" placeholder="Enter 5 characters only" class="form-control" [(ngModel)]="num2">
+        <h1 [ngClass]="isTextValid ?'text-danger' :'text-success'">
+            {{isTextValid ?'Text is invalid' :'Text is valid'}}
+        </h1>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-success" (click)="addDivClass('bg-success')">
+            success
+        </button>
+        <button class="btn btn-danger" (click)="addDivClass('bg-danger')">
+            danger
+        </button>
+    </div>
+    <div class="col-3">
+        <input type="checkbox" [(ngModel)]="isCheckActive">
+        -{{isCheckActive}}
+    </div>
+    <div class="col-3">
+        <button class="btn btn-success" (click)="checkCharLength()">
+            Check Length
+        </button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-3">
+        <div class="p-3" [ngStyle]="{'background-color':inputColorValue, 'width' :'200%','height': '200%'}">
+            DIv 3
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="p-3" [ngStyle]="div4css">
+            DIV 4
+        </div>
+    </div>
+</div>
+<div class="row">
+
+</div>
+<div class="row">
+    <div class="col-3">
+        <input type="color" [(ngModel)]="inputColorValue">
+    </div>
+    <div class="col-3">
+        <button (click)="changeType('circle')">
+            Circle
+        </button>
+        <button (click)="changeType('square')">
+            Square
+        </button>
+    </div>
+</div>
+<!-- ng style is an array it is a key value pair data so whereever using ngstyle need to create object with semicolon-->

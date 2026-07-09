@@ -34,9 +34,14 @@ export const routes: Routes = [
         path: 'signal-form',
         component: SignalForms
     },
+    // {
+    //     path: 'control-flow',
+    //     component: ControlFlowstatements
+    // }, 
+    //The below code is for lazily loading the standalone components.
     {
         path: 'control-flow',
-        component: ControlFlowstatements
+        loadComponent: () => import('./components/control-flowstatements/control-flowstatements').then(m => m.ControlFlowstatements)
     },
     {
         path: 'dashboard',
@@ -52,7 +57,7 @@ export const routes: Routes = [
     {
         path: 'admin',
         // 1. Lazy load the main Admin Shell Component
-        loadComponent: () => import('./components/admin/admin').then(m => m.Admin),
+        loadComponent: () => import('./components/admin/admin').then(com => com.Admin), //this is the promise and return all the components
 
         // 2. Define the sub-routes (settings and profile) inside children
         children: [
