@@ -1,0 +1,68 @@
+<div class="container">
+    <p>First Example of state</p>
+    <div>
+        <h1>Counter :{{counter}}</h1>
+    </div>
+    <hr>
+    <div>
+        <button class="btn btn-success" (click)="increment()">
+            Increment
+        </button>
+    </div>
+</div>
+<hr>
+<div class="logincontainer">
+    <p>Second Example of state</p>
+    <h1>Login Here</h1>
+    <br>
+    <div class="row">
+        <input type="text" placeholder="Enter UserName" class="form-control">
+    </div>
+    <br>
+    <div class="row">
+        <input type="password" placeholder="Enter Password" class="form-control">
+    </div>
+    <br>
+    <div class="row">
+        <button class="btn btn-primary" (click)="login()">Login</button>
+    </div>
+    <br>
+
+    @if(isLoading){
+    <app-loader></app-loader>
+    }
+    <br>
+</div>
+
+
+<!-- Definition of state  -->
+<!-- 
+ 1.The term state refers to the data that your application manages and displays to the user 
+ 2. it encompasses all the information that change overtime and affect the ui
+ 3. you can think of it as the current snapshot of your application's data at any given moment
+ -->
+
+
+<!-- TYpes of state  -->
+<!-- 
+1.Local State
+2.Global State
+ -->
+
+<!-- Local State:
+ 1. This is the simplest form of state and  is managed entirely within a single angular component.
+ 2.its confined to that component's tempalte and logic and is not directly accessible by other components
+ -->
+
+<!-- Example -->
+<!-- A counter variable count that only increments / decrements inside a counter component -->
+
+
+<!-- Global state  or Application Wide state-->
+<!-- This type of state needs to be shared across multiple,often unrealted,components. -->
+
+<!-- Example -->
+<!-- 
+1.The current user's authentication status and profile information (eg:isLoggedIN,loggedUser).
+2.A global isLoading flag that indicates whether an Api call is in progress,affecting multiple ui elements 
+-->

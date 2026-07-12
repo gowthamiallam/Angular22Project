@@ -80,6 +80,10 @@ export const routes: Routes = [
         ]
     },
     {
+        path: 'state-management',
+        loadComponent: () => import('./components/state-or-statemanagement/state-or-statemanagement').then(m => m.StateOrStatemanagement)
+    },
+    {
         path: '**',           //this is WildCard  route
         component: PageNotfound  //if the route doesnt match in the url we need to navigate to page not found comp
     }
