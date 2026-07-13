@@ -66,3 +66,47 @@
 1.The current user's authentication status and profile information (eg:isLoggedIN,loggedUser).
 2.A global isLoading flag that indicates whether an Api call is in progress,affecting multiple ui elements 
 -->
+<!-- 
+Introduction to state management in angular
+
+1.State Management in angular refers to the management and manipulation of data within an application
+2.It helps in storing and updating the application's state in a predictable and scalable way.
+
+
+Types of state management in angular
+There are primarily two types of statemanagement in angular
+1.Local state Management
+2.Global state management
+
+
+Local state Management :
+1.Local state management involves managing state within a single component.
+2.Local state management in angular is usually achieved using component properties and angular two-way data binding.
+
+For Example, in Angular component:
+
+export class ExampleComponent {
+count number =0;
+
+incrementCount(){
+this.count ++;
+}
+}
+
+
+
+Global state Management :
+1.while global state management involves managing state that can be accessed by multiple components.
+2.Global state management in angular is often achieved using services or libraries like NgRx or Akita
+3.These tools allow for centralized store management that can be accessed and modified by different components
+
+Example using NgRx store in Angular:
+
+stoore.dispatch({type : 'INCREMENT_COUNT'});
+
+
+Benefits of State Management in Angular
+
+1.statemanagement in angular helps in maintaining a single source of truth for the application's data
+2.it improves code organisation and scalability by seperating concerns related to data manipulation.
+3.it enables efficent communication between components and ensures consistent data flow throughout the applciation. -->
