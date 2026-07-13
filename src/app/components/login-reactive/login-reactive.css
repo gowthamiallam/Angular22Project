@@ -1,0 +1,96 @@
+/* login.component.css */
+.login-wrapper {
+  /* Forces the wrapper to break free from the dashboard layout */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999; /* Sits on top of everything else */
+  
+  /* Forces perfect horizontal and vertical centering */
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  
+  /* Takes up the exact size of the entire browser monitor screen */
+  width: 100vw;
+  height: 100vh;
+  background-color: #f8fafc; /* Subtle light background fill */
+  box-sizing: border-box;
+}
+
+.login-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+h2 {
+  margin: 0 0 8px 0;
+  color: #1e293b; /* Dark slate */
+  font-size: 1.75rem;
+}
+
+.subtitle {
+  margin: 0 0 24px 0;
+  color: #64748b; /* Muted gray text */
+  font-size: 0.95rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 6px;
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+input {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+input:focus {
+  border-color: #0284c7; /* Sky blue focus */
+}
+
+/* Red outline highlight on error validation */
+input.is-invalid {
+  border-color: #ef4444 !important;
+}
+
+.error-message {
+  color: #ef4444;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #0284c7; /* Dashboard theme button blue */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  margin-top: 8px;
+}
+
+.login-btn:hover {
+  background-color: #0369a1;
+}

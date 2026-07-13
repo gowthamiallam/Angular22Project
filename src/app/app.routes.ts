@@ -6,13 +6,18 @@ import { PageNotfound } from './components/page-notfound/page-notfound';
 import { Signals } from './components/signals/signals';
 import { SignalForms } from './components/signal-forms/signal-forms';
 import { ControlFlowstatements } from './components/control-flowstatements/control-flowstatements';
+import { LoginReactive } from './components/login-reactive/login-reactive';
 
 //routes are getting index so give empty path at first and wild card route at last 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'databinding',  //this is Default route
+        redirectTo: 'login',  //this is Default route
         pathMatch: 'full'           // if the url is empty we need to navigate to databinding comp
+    },
+    {
+        path: 'login',
+        component: LoginReactive       //this is Normal route 
     },
     {
         path: 'variables',

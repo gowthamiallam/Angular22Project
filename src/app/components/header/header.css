@@ -1,0 +1,57 @@
+.app-header {
+      height: 60px;
+      display: flex;
+      justify-content: space-between; /* Pushes logo to left, user-actions to right */
+      align-items: center;
+      padding: 0 24px;
+      background-color: #111827; /* Dark theme to match your navigation panel */
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      font-family: system-ui, sans-serif;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #38bdf8; /* Accent color matching your sidebar */
+    }
+
+    /* Arranges name and button side-by-side on the right */
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px; /* Space between the name and the button */
+    }
+
+    .user-name {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+
+    /* Clean, modern Logout Button styling */
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #ef4444; /* Alert red */
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #dc2626; /* Darker red on hover */
+    }
+
+    .logout-icon {
+      width: 16px;
+      height: 16px;
+    }
+  

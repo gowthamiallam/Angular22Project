@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <!-- <a class="navbar-brand" href="javascript:void(0)">Logo</a> -->
+        <a class="navbar-brand" href="javascript:void(0)">Logo</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,11 +34,23 @@
                     <a class="nav-link" routerLink="state-management" routerLinkActive="active">StateManagementConcept</a>
                 </li>
             </ul>
-            <!-- <form class="d-flex">
+            <form class="d-flex">
                 <input class="form-control me-2" type="text" placeholder="Search">
                 <button class="btn btn-primary" type="button">Search</button>
-            </form> -->
+            </form>
         </div>
     </div>
-</nav>
-<router-outlet></router-outlet>
+</nav> -->
+<!-- <router-outlet></router-outlet> -->
+<app-header></app-header>
+
+<!-- This container element is what forces things to sit side-by-side -->
+<div class="main-layout-container">
+
+    <app-sidebar></app-sidebar>
+
+    <!-- Wrap all your right-side content or <router-outlet> in this main tag -->
+    <main class="page-content">
+        <router-outlet></router-outlet>
+    </main>
+</div>

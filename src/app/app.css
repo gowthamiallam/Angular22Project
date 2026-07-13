@@ -1,3 +1,26 @@
 .active{
     color: red !important;
 }
+/* 1. Sets up the side-by-side layout flex row */
+.main-layout-container {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 60px); /* Adjust '60px' to match your header's actual height */
+  overflow: hidden;
+}
+
+/* 2. Forces your sidebar to stay a fixed width and not shrink */
+app-sidebar {
+  flex-shrink: 0;
+  width: 260px; /* Or whatever width your sidebar CSS uses */
+  height: 100%;
+}
+
+/* 3. The magic panel: Takes up all remaining screen space on the right */
+.page-content {
+  flex-grow: 1; 
+  padding: 32px;
+  background-color: #ffffff;
+  overflow-y: auto; /* If content gets long, only this panel scrolls */
+  box-sizing: border-box;
+}
