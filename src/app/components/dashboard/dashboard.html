@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<div class="table-container">
+    <h2>Team Members Dashboard</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through the users array -->
+            @for (user of users; track user.id) {
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,24 @@
+<div class="service">
+    <h1>
+        Fruit Items</h1>
+    <p>Every item is fresh and Quality</p>
+</div>
+
+
+<div class="row">
+    @for(item of fruitsList;track $index){
+    <div class="col-4 mt-2">
+
+        <div class="card" style="height: 300px;">
+            <div class="card-body">
+                <!-- <i class="bi bi-alarm fs-1 mb-3 text-primary"></i> -->
+                <img [src]="item.imagePath" [alt]="item.title" class="card-img-top img-fluid"
+                    style="height: 150px;width:200px; left: 100px;position:relative">
+                <h4 class="card-title">{{item.title}}</h4>
+                <p class="card-text">{{item.text}}</p>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+<hr>

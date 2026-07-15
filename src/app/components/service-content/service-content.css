@@ -1,0 +1,16 @@
+.service{
+    text-align: center;
+}
+.card-title{
+     text-align: center;
+     font-weight: bold;
+     font-size:25px;
+         margin: 10px 10px 30px 10px;
+}
+.card-text{
+    text-align: center;
+    margin: 30px 10px 24px 10px;
+}
+.text-primary{
+    margin: 10px 10px 10px 150px;
+}

@@ -1,0 +1,11 @@
+.welcome {
+    background-color: darkorchid;
+    height: 300px;
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    color: white;
+    position: relative;
+    bottom: -40px;
+
+}

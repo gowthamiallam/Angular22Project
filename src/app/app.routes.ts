@@ -7,6 +7,7 @@ import { Signals } from './components/signals/signals';
 import { SignalForms } from './components/signal-forms/signal-forms';
 import { ControlFlowstatements } from './components/control-flowstatements/control-flowstatements';
 import { LoginReactive } from './components/login-reactive/login-reactive';
+import { Hero } from './components/hero/hero';
 
 //routes are getting index so give empty path at first and wild card route at last 
 export const routes: Routes = [
@@ -15,10 +16,7 @@ export const routes: Routes = [
         redirectTo: 'login',  //this is Default route
         pathMatch: 'full'           // if the url is empty we need to navigate to databinding comp
     },
-    {
-        path: 'login',
-        component: LoginReactive       //this is Normal route 
-    },
+    
     {
         path: 'variables',
         component: Variables       //this is Normal route 
@@ -87,6 +85,14 @@ export const routes: Routes = [
     {
         path: 'state-management',
         loadComponent: () => import('./components/state-or-statemanagement/state-or-statemanagement').then(m => m.StateOrStatemanagement)
+    },
+    {
+        path: 'hero',
+        component: Hero
+    },
+    {
+        path: 'login',
+        component: LoginReactive       //this is Normal route 
     },
     {
         path: '**',           //this is WildCard  route

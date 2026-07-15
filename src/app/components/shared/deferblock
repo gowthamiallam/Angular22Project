@@ -1,0 +1,90 @@
+
+
+<!-- USE FOR THE TEMPLATE LEVEL LAZY LOADING USING DEFERBLOCK -->
+
+<app-header></app-header>
+@defer(on timer(3000)){
+<app-hero></app-hero>
+}
+
+<!-- 
+ 1.suppose this service-content component is very heavy component 
+ 2.i want to exclude it from the initial bundle.
+ 3.once the initial bundle is downloaded and rendered in browser after that i want angular 
+ to make another request to download a bundle for this services component .
+ 4. to achieve that we can use defer block after that we need to specify the trigger  and we wrap the content
+ which we want to load lazily inside this block.
+ this component will not be included in the initial bundle it is a deferred content it will be lazily loaded 
+ now we need to specify when this component should be lazily loaded for that we need to specify trigger we use on and trigger name 
+ 
+ default trigge -idle 
+
+ 1.Idle trigger -loads the bundle for the deferred content when the browser is idle  angular makes the request to downalod the bundle for the 
+ deffered content it will wait for the browser    to run the styles and scripts in case of ideal
+ 2.Immediate trigger-very similar to idle trigger but the difference is that immediate trigger does not wait for the browser
+ to be idle as soon as the initial bundle downlaoded angular will make the request to dowload the bundle for deffered content
+ 3.viewport trigger-loads the deferred content as soon as the block enters screen .
+ placeholder is mandatory in case of view port 
+ trigger 
+ -->
+<!-- 1.@defer(on idle)
+2.@defer(on immediate)
+3.@defer(on viewport)
+@placeholder (minimum 2000){
+} is mandatory
+ 4.@defer(on interaction()) -oninteraction
+ 5.@defer(on hover())  --onhover
+ 6.@defer(on timer(3000)) -on timer
+ 7.@defer(when show) -lazy load deferred content conditionally true only
+ 8.@defer(prefetch) -when the browser is idle it can prefetch the bundle but not 
+ render in ui
+ when the browser is idle it will lazy load the deffered content download the inital bundle  
+ render in ui incase of idle 
+ 9.loading-after 500 ms only loading will be displayed when the bundle for deffered content is download
+10.error -when the bundle for deffered content is failed or any network issues 
+-->
+
+@defer(on viewport){
+<app-service-content></app-service-content>
+}
+<!-- this placeholder we can use for flickering  when browser is idle service component is lazyily loaded -->
+@placeholder{
+<p>Loading service component</p>
+}
+@loading(minimum 300;after 500){
+<p>execute when the bundle for the component is downloaded if you want to show something in ui</p>
+}
+@error{
+<p>an error occurred</p>
+}
+<div class="class">
+    <h2>Interested in our online market? Get a content from us.</h2>
+    <button class="btn btn-primary" style="float: right;" #fruits>Get Sample Content</button>
+
+</div>
+@defer(prefetch on idle; on interaction(fruits)){
+<app-sample-content></app-sample-content>
+}
+
+
+<div class="loader" #divhover>
+    <h2>see what it is happening exactly the loader</h2>
+</div>
+<br><br>
+@defer(on hover(divhover)){
+<app-loader></app-loader>
+}
+<hr>
+
+<div class="dashboard">
+    <h2>see what in the dashboard</h2>
+    <button class="btn btn-warning" style="float: right;position: relative;top: -50px;" (click)="show=true">Get
+        Dashboard</button>
+</div>
+<hr>
+
+@defer(when show){
+<app-dashboard></app-dashboard>
+}
+
+<!-- USE FOR THE TEMPLATE LEVEL LAZY LOADING USING DEFERBLOCK -->

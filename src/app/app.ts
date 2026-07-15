@@ -4,8 +4,14 @@ import { DataBinding } from './components/data-binding/data-binding';
 import { SignalForms } from './components/signal-forms/signal-forms';
 import { Header } from './components/header/header';
 import { Sidebar } from './components/sidebar/sidebar';
+import { Hero } from './components/hero/hero';
+import { ServiceContent } from './components/service-content/service-content';
+import { SampleContent } from './components/sample-content/sample-content';
+import { Loader } from './components/loader/loader';
+import { LoginReactive } from './components/login-reactive/login-reactive';
+import { Dashboard } from './components/dashboard/dashboard';
 // import { Variables } from './components/variables/variables';
-
+// ,Header,Sidebar,RouterOutlet,
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,Header,Sidebar],
@@ -14,4 +20,5 @@ import { Sidebar } from './components/sidebar/sidebar';
 })
 export class App {
   protected readonly title = signal('Angular22Project');
+  show = false;
 }

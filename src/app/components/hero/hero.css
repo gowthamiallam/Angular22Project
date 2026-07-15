@@ -1,0 +1,46 @@
+.heading {
+    background-color: royalblue;
+    height: 100%;
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+    color: aquamarine;
+    text-align: center;
+    background-image: url('../../../../public/images/mango.jpg');
+
+    /* Tells the browser to repeat the pattern in both directions */
+    background-repeat: repeat;
+     min-height: 60px;
+    margin: 0;
+}
+
+.welcome {
+    background-color: #2b3a67;
+    height: 600px;
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    color: white;
+    position: relative;
+    top: -8px;
+
+}
+
+.fruit {
+    /* Replace with your pattern image URL or file path */
+    background-image: url('../../../../public/images/fruits.jpg');
+
+    /* Tells the browser to repeat the pattern in both directions */
+    background-repeat: repeat;
+
+    /* Controls the size of the individual tiles (e.g., 200px wide) */
+    background-size: 200px;
+
+    /* Keeps the pattern fixed in place while scrolling content */
+    /* background-attachment: fixed; */
+
+    /* Fallback background color matching the pattern's base tone */
+    background-color: #2b3a67;
+
+    min-height: 350px;
+    margin: 0;
+}
