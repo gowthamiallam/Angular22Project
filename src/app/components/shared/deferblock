@@ -88,3 +88,142 @@
 }
 
 <!-- USE FOR THE TEMPLATE LEVEL LAZY LOADING USING DEFERBLOCK -->
+
+
+
+//REAL TIME IN NETWORK TAB CHECKED THE CHUNK FILES AND HOW TEMPLATE LEVEL LAZY LOADING WORKING
+
+Check 1: Is your Dev Server running with Hot Module Replacement (HMR)?
+
+If you are developing locally with modern Angular, HMR is enabled by default.
+
+Angular has a known built-in behavior: During HMR development, all @defer blocks are completely disabled and forced to load eagerly. Angular does this intentionally so that when you modify code inside a deferred component, it can instantly swap the code without breaking your running page.
+
+The Fix / How to check:
+Open your terminal and stop your current server. Restart it by explicitly disabling HMR: -
+
+ng serve --no-hmr
+
+
+Restart it by enabling HMR: -
+ng serve --hmr
+
+
+use command ng build to see initial chunk files and lazy files and 
+dist file also will be generated in the project check it parallely
+
+
+NG0751: Angular has detected that this application contains `@defer` blocks and the hot module replacement (HMR) mode is enabled. All `@defer` block dependencies will be loaded eagerly. Find more at https://v22.angular.dev/errors/NG0751
+
+
+
+
+
+<!-- USE FOR THE TEMPLATE LEVEL LAZY LOADING USING DEFERBLOCK -->
+
+<div style="height: 1500px; background: #eee;">Scroll down to trigger defer...</div>
+
+//1.IDLE
+@defer (on idle) {
+<app-service-content></app-service-content>
+} @placeholder {
+<div style="min-height: 500px;">Loading content when visible...</div>
+}
+
+//2.IMMEDIATE
+@defer (on immediate) {
+<app-service-content></app-service-content>
+} @placeholder {
+<div style="min-height: 500px;">Loading content when visible...</div>
+}
+
+//3.VIEWPORT
+
+@defer (on viewport) {
+<app-service-content></app-service-content>
+} @placeholder {
+<div style="min-height: 500px;">Loading content when visible...</div>
+}
+
+//4.ON INTERACTION
+<div class="class">
+    <h2>Interested in our online market? Get a content from us.</h2>
+    <button class="btn btn-primary" style="float: right;" #fruits>Get Sample Content</button>
+
+</div>
+@defer(on interaction(fruits)){
+<app-sample-content></app-sample-content>
+}
+
+//5.ON HOVER
+<div class="loader" #divhover>
+    <h2>see what it is happening exactly the loader</h2>
+</div>
+<br><br>
+@defer(on hover(divhover)){
+<app-loader></app-loader>
+}
+
+//6.ON TIMER
+@defer(on timer(3000)){
+<app-hero></app-hero>
+}
+
+//7.CONDITIONAL TRIGGER
+<div class="dashboard">
+    <h2>see what in the dashboard</h2>
+    <button class="btn btn-warning" style="float: right;position: relative;top: -50px;" (click)="show=true">Get
+        Dashboard</button>
+</div>
+<hr>
+
+@defer(when show){
+<app-dashboard></app-dashboard>
+}
+
+//8.PREFETCH
+<div class="class">
+    <h2>Interested in our online market? Get a content from us.</h2>
+    <button class="btn btn-primary" style="float: right;" #fruits>Get Sample Content</button>
+
+</div>
+@defer(prefetch on idle; on interaction(fruits)){
+<app-sample-content></app-sample-content>
+}
+
+//9.LOADING
+
+<div class="dashboard">
+    <h2>see what in the dashboard</h2>
+    <button class="btn btn-warning" style="float: right;position: relative;top: -50px;" (click)="show=true">Get
+        Dashboard</button>
+</div>
+<hr>
+
+@defer(when show){
+<app-dashboard></app-dashboard>
+}
+@loading(minimum 3000){
+<p>execute when the bundle for the component is downloaded if you want to show something in ui</p>
+}
+
+//10 ERROR
+<div class="dashboard">
+    <h2>see what in the dashboard</h2>
+    <button class="btn btn-warning" style="float: right;position: relative;top: -50px;" (click)="show=true">Get
+        Dashboard</button>
+</div>
+<hr>
+
+@defer(when show){
+<app-dashboard></app-dashboard>
+}
+@loading(minimum 3000) {
+<p>Loading dashboard...</p>
+}
+@error {
+<div class="alert alert-danger">
+    <strong>Oops!</strong> Failed to load the dashboard. Please check your internet connection.
+</div>
+}
+<!-- USE FOR THE TEMPLATE LEVEL LAZY LOADING USING DEFERBLOCK -->
