@@ -1,0 +1,20 @@
+
+    <h2>Observables -Promises</h2>
+    <p>Promises are inbuit feature of javascript to deal with asynchronous operations and Promises emits only 1 value
+    </p>
+    <p>Observables are also deal with asynchronous operations we need to import from rxjs library and Observables emits
+        multiple
+        values at a time</p>
+    <p>Data streaming -for example the client request the video file from the youtube server then the server will get
+        the data from the database or the websocket.
+    </p>
+    <p>and the server will respond to the client it send the video file as 1 file/chunk 1gb but it will take more time
+        to
+        send the user need to wait for this actually</p>
+    <p>the server will also respond to the client it send the video file in chunks 10mb 10 files as it send 1st chunk
+        later 2 nd chunk
+        in this case the user no need to wait the user can check the 1st part until the 2nd part arrives.
+        this is nothing but the data streaming for this data streaming we can use Observables in angular
+    </p>
+
+    <p>https://codesignal.com/learn/courses/angular-features-and-data-management/lessons/observables-in-angular</p>

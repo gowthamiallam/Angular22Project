@@ -1,0 +1,19 @@
+1.when i am using signal the mutate not worked in angular 22
+
+2.so when i am using defer block in angular 22 chunk files i have not seen
+in network because bydefault the hmr is disabled in 22 i have enabled that 
+one and saw the chunk file 
+
+we have command actually by enabling the hmr
+
+3.And when i am working with observable i have the set time out actually
+then the data list of array is not rendered in the ui actually
+then i have change the datalist array into signal then it actually works 
+
+because change detection cycle is not there in angular 22 signals are working 
+here to udpate the ui 
+
+
+4.And ng for and ngif is not working in angular 22
+
+5. may be settime out ng for and ngif will work in below versions 

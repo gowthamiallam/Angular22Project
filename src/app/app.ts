@@ -14,7 +14,7 @@ import { Dashboard } from './components/dashboard/dashboard';
 // ,Header,Sidebar,RouterOutlet,
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,Header,Sidebar],
+  imports: [RouterOutlet,Header],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

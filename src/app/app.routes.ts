@@ -8,6 +8,7 @@ import { SignalForms } from './components/signal-forms/signal-forms';
 import { ControlFlowstatements } from './components/control-flowstatements/control-flowstatements';
 import { LoginReactive } from './components/login-reactive/login-reactive';
 import { Hero } from './components/hero/hero';
+import { ObservablePromises } from './observable-promises/observable-promises';
 
 //routes are getting index so give empty path at first and wild card route at last 
 export const routes: Routes = [
@@ -93,6 +94,10 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginReactive       //this is Normal route 
+    },
+    {
+        path: 'observables-promises',
+        component: ObservablePromises       //this is Normal route 
     },
     {
         path: '**',           //this is WildCard  route
