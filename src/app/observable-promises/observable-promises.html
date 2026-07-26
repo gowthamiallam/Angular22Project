@@ -5,7 +5,12 @@
     <!-- USE FOR STREAMING OF DATA  -->
     <button class="btn btn-warning" (click)="getObservableData()">GetObservableData</button>
     <br>
-    @for(x of dataList();track $index){
+    <!-- @for(x of dataList();track $index){
+    <div class="data-list">
+        {{x}}
+    </div>
+    } -->
+     @for(x of dataList;track $index){
     <div class="data-list">
         {{x}}
     </div>

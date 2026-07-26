@@ -17,3 +17,10 @@ here to udpate the ui
 4.And ng for and ngif is not working in angular 22
 
 5. may be settime out ng for and ngif will work in below versions 
+
+
+6. i have used changedetector in angular
+ for Force Angular to immediately check this component and refresh the UI
+ because the ui is not updating when i set the settimeout in observable
+
+  as well as we can use signals to get rid of change detection cycle settimeout

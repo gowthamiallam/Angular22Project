@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -6,11 +6,19 @@ import { Observable } from 'rxjs';
   imports: [],
   templateUrl: './observable-promises.html',
   styleUrl: './observable-promises.css',
+  // changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class ObservablePromises {
-  // dataList: any = [];
-  dataList = signal<any[]>([]);
+  dataList: any = [];
+  // dataList = signal<any[]>([]);
 
+  // 2. Inject ChangeDetectorRef right here in the class property definitions
+  private cdr = inject(ChangeDetectorRef);
+
+  //old way of injecting 
+  // constructor(private cdr: ChangeDetectorRef) {
+
+  // }
 
   //CREATING AN OBSERVABLE AND TO CREATE THIS WE NEED TO CALL CONSTRUCTOR OF AN OBSERVABLE 
   //creating observable new Observable() constructor and assign to property
@@ -123,16 +131,24 @@ export class ObservablePromises {
   })
 
   getObservableData() {
-    // this.dataList = [];
+    this.dataList = [];
     this.myObservable.subscribe((val: any) => { //receving the first value and pushing again 2nd 3rd 4th and 5 th values and pusing 
-    //   this.dataList.push(val);
-    //   console.log(this.dataList, "Data streaming in the form of observables ");
+      // this.dataList.push(val);
+      // console.log(this.dataList, "Data streaming in the form of observables ");
+
+
+      // 3. Keep the spread operator logic
+      this.dataList = [...this.dataList, val];
+      console.log(this.dataList, "Data streaming in the form of observables");
+
+      // 4. Force Angular to immediately check this component and refresh the UI
+      this.cdr.detectChanges();
 
 
       //INCASE OF USING SIGNALS USE THIS CODE 
       // 2. Use the .update() method and return a NEW array reference
-      this.dataList.update(currentList => [...currentList, val]);
-      console.log(this.dataList(), "Data streaming in the form of observables");
+      // this.dataList.update(currentList => [...currentList, val]);
+      // console.log(this.dataList(), "Data streaming in the form of observables");
     });
   }
 
