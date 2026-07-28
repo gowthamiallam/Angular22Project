@@ -12,6 +12,7 @@ export class ObservablePromises {
   dataList: any = [];
   // dataList = signal<any[]>([]);
 
+
   // 2. Inject ChangeDetectorRef right here in the class property definitions
   private cdr = inject(ChangeDetectorRef);
 
@@ -122,24 +123,67 @@ export class ObservablePromises {
   //   // observer.next(5);//here 5th value will be emitted 
   // })
 
+  //Process
+  //when we are  calling  next method observable  is going to emit  a next event or  data 
+  //when the next event will be emitted subscriber listen or wait for next event  by subscribing to that observable
+  // when the next event will be emitted event handler handles that next event by calling this first call back function
+  //and in this call back function we are going to receive the value or data
+
+
+  //when working with asynchronous data observable can also emit an error  observable is going to emit an error event also
+
+  //to emit an error we use error method
+  //to emit some data or event we use next method 
+
+
+  //observable also send complete signal 
+  //complete method tells all the data from data stream are successfully completed 
+
+  //the subscriber will be notified 
+  //to this subscribe method we can pass the 3 call back functions to handle using event handler
+  //1.next -1st call back funcion -to handle the event or  value emitted by next method 
+  //2.error -2nd call back function - to handle the error event emitted by error method
+  //3.completed call back function -not receive any argument we can execute the 3rd call back function
+
+  //after complete signal has been emitted we can not emit any more data from observable
+
+  //By using observable when we want to emit some data we use next method - next method is going to emit next event
+  //when we want to emit some error we use error method - error method is going to emit error event
+  //when we want to emit complete signal we use complete method - complete method is going to emit complete event
+
+  //since we subscribe to these observable when any of those events will happen this line of code will be notified about that 
+  //and then we can pass the next call back function to handle next event
+  //we can pass the error call back function to handle the error event 
+  //we cann pass the complete call back function to handle the complete event 
+
+  //in the old code its depricated so its showing error in the latest way
+
+
+  //uncomment the things if you want to check the changes
   myObservable = new Observable(observer => {
     setTimeout(() => { observer.next(1) }, 1000);
     setTimeout(() => { observer.next(2) }, 2000);
     setTimeout(() => { observer.next(3) }, 3000);
+    // setTimeout(() => { observer.error(new Error('hurray something went wrong')) }, 3000);
     setTimeout(() => { observer.next(4) }, 4000);
-    setTimeout(() => { observer.next(5) }, 5000)
+    setTimeout(() => { observer.next(5) }, 5000);
+    setTimeout(() => { observer.complete() }, 6000);//4 and 5 will print 
+    // setTimeout(() => { observer.complete() }, 3000); //4 and 5 will not print settimeout is changed
   })
 
+
+  //old way of handling the emitted data by observables 
   getObservableData() {
     this.dataList = [];
-    this.myObservable.subscribe((val: any) => { //receving the first value and pushing again 2nd 3rd 4th and 5 th values and pusing 
+    this.myObservable.subscribe((val: any) => {
+      //receving the first value and pushing again 2nd 3rd 4th and 5 th values and pusing 
       // this.dataList.push(val);
       // console.log(this.dataList, "Data streaming in the form of observables ");
 
 
       // 3. Keep the spread operator logic
-      this.dataList = [...this.dataList, val];
-      console.log(this.dataList, "Data streaming in the form of observables");
+      // this.dataList = [...this.dataList, val];
+      // console.log(this.dataList, "Data streaming in the form of observables");
 
       // 4. Force Angular to immediately check this component and refresh the UI
       this.cdr.detectChanges();
@@ -149,7 +193,18 @@ export class ObservablePromises {
       // 2. Use the .update() method and return a NEW array reference
       // this.dataList.update(currentList => [...currentList, val]);
       // console.log(this.dataList(), "Data streaming in the form of observables");
-    });
+    },
+      (err: any) => {
+        // Handle the error using 2nd call back function and 
+        // once the error has occured after that observable wont emit any more value or the  data any more 4 &  5 will not get emitted 
+        //(or) complete signal also not emmited from observable 
+        alert(err.message);
+      },
+      () => {
+        console.log("complete ")
+        //this is 3rd call back function complete signal i.e observable completed the data streaming it wont emmit any data
+        alert("All the data is streamed ")
+      });
   }
 
   // myObservable = new Observable(observer => {
@@ -174,4 +229,23 @@ export class ObservablePromises {
   //     complete: () => console.log('Done!')
   //   });
   // }
+  //new way of handling the data 
+  getStreamingOfData() {
+    this.dataList = [];
+    //this keyword will point to instance of this component
+    this.myObservable.subscribe({
+      next: value => {
+        this.dataList = [...this.dataList, value];
+        this.cdr.detectChanges();
+      },
+      error(err) {
+        alert(err.message);
+      },
+      complete() {
+        alert("all the data is streamed")
+      }
+    })
+
+  }
+
 }
