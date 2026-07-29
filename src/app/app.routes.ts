@@ -9,6 +9,7 @@ import { ControlFlowstatements } from './components/control-flowstatements/contr
 import { LoginReactive } from './components/login-reactive/login-reactive';
 import { Hero } from './components/hero/hero';
 import { ObservablePromises } from './observable-promises/observable-promises';
+import { RxjsOperators } from './components/rxjs-operators/rxjs-operators';
 
 //routes are getting index so give empty path at first and wild card route at last 
 export const routes: Routes = [
@@ -98,6 +99,10 @@ export const routes: Routes = [
     {
         path: 'observables-promises',
         component: ObservablePromises       //this is Normal route 
+    },
+    {
+        path: 'rxjs-operators',
+        component: RxjsOperators      
     },
     {
         path: '**',           //this is WildCard  route

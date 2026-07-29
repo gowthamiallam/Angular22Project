@@ -1,0 +1,67 @@
+// Since you are working in a modern version of Angular, the absolute cleanest way to handle subscriptions is to get rid of the manual subscription1 property altogether.
+
+// By using Angular's takeUntilDestroyed operator, the subscription will automatically clean itself up when the component dies—no manual property or ngOnDestroy required.
+
+// TypeScript
+// import { Component, inject, OnInit } from '@angular/core';
+// import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+// export class MyComponent implements OnInit {
+//   // You need the DestroyRef if subscribing inside ngOnInit
+//   private destroyRef = inject(DestroyRef); 
+
+//   ngOnInit() {
+//     myObservable$.pipe(
+//       takeUntilDestroyed(this.destroyRef) // Automatically cleans up!
+//     ).subscribe(data => {
+//       console.log(data);
+//     });
+//   }
+
+
+
+
+// TypeScript is happy because it knows this starts as undefined
+//   private subscription1?: Subscription; 
+
+//   ngOnInit() {
+//     this.subscription1 = myObservable$.subscribe();
+//   }
+
+//   ngOnDestroy() {
+//     // Use optional chaining (?.) so it only unsubscribes if it exists
+//     this.subscription1?.unsubscribe();
+//   }
+
+
+// // TypeScript is happy because it knows this starts as undefined
+//   private subscription1?: Subscription; 
+
+//   ngOnInit() {
+//     this.subscription1 = myObservable$.subscribe();
+//   }
+
+//   ngOnDestroy() {
+//     // Use optional chaining (?.) so it only unsubscribes if it exists
+//     this.subscription1?.unsubscribe();
+//   }
+
+
+
+
+// import { Component, OnInit, inject, DestroyRef } from '@angular/core';
+// import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+// export class MyComponent implements OnInit {
+//   private mockDataService = inject(MockDataService);
+//   private destroyRef = inject(DestroyRef); // Required inside lifecycle hooks
+//   protected items1: any[] = [];
+
+//   ngOnInit() {
+//     this.mockDataService.fetchData().pipe(
+//       takeUntilDestroyed(this.destroyRef) // Automatically unsubscribes when component dies
+//     ).subscribe(data => {
+//       this.items1 = data;
+//     });
+//   }
+// }

@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, signal } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { MockService } from '../components/shared/mock-service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-observable-promises',
@@ -16,8 +18,17 @@ export class ObservablePromises {
   // 2. Inject ChangeDetectorRef right here in the class property definitions
   private cdr = inject(ChangeDetectorRef);
 
+  // Inject the service directly into a property
+  // protected mockservice = inject(MockService);
+
+  // items1: string[] = [];
+  // subscription1?: Subscription;
+
+  // You need the DestroyRef if subscribing inside ngOnInit
+  // private destroyRef = inject(DestroyRef);
+
   //old way of injecting 
-  // constructor(private cdr: ChangeDetectorRef) {
+  // constructor(private cdr: ChangeDetectorRef;private mockDataService: MockDataService) {
 
   // }
 
@@ -246,6 +257,83 @@ export class ObservablePromises {
       }
     })
 
+  }
+
+
+
+  //creating an observable and emitting data using next method and complete method
+  observable = new Observable(observer => {
+    observer.next("Hello");
+    observer.next("World")
+    observer.complete();
+  });
+
+  // ngOnInit() {
+  //   this.observable.subscribe({
+  //     next: (val: any) => {
+  //       console.log(val);
+  //     }, error(err) {
+  //       console.log(err);
+  //     }, complete: () => {
+  //       console.log("complete")
+  //     }
+  //   });
+
+  //   this.fetchData();
+  // }
+
+
+
+  //fetching the data using service to get observable data subscribing to an observable  old wway
+  // fetchData() {
+  //   this.subscription1 = this.mockservice.fetchData().subscribe((data: any) => {
+  //     this.items1 = data;
+  //     console.log(this.items1, "using mockservice returning the observable data like from an api")
+  //   });
+
+  // }
+  //unsubscribing an observable to avoid memory leaks -its old wAY
+  // ngOnDestroy() {
+  //   if (this.subscription1) {
+  //     this.subscription1.unsubscribe();
+  //     console.log("unsubscribe")
+  //   }
+  // }
+
+  //modern way of subscribing and unsubscribing
+
+  //   import { Component, OnInit, inject, DestroyRef } from '@angular/core';
+  // import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+  // export class MyComponent implements OnInit {
+  private mockDataService = inject(MockService);
+  private destroyRef = inject(DestroyRef); // Required inside lifecycle hooks
+  protected items1: any[] = [];
+
+  ngOnInit() {
+    this.get();
+    this.fetchData();
+
+  }
+
+  get() {
+    this.observable.subscribe({
+      next: (val: any) => {
+        console.log(val);
+      }, error(err) {
+        console.log(err);
+      }, complete: () => {
+        console.log("complete")
+      }
+    });
+  }
+  fetchData() {
+    this.mockDataService.fetchData().pipe(
+      takeUntilDestroyed(this.destroyRef) // Automatically unsubscribes when component dies
+    ).subscribe(data => {
+      this.items1 = data;
+      console.log(this.items1,"subscribing and unsubscribing ")
+    });
   }
 
 }
