@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { concatMap, delay, distinct, distinctUntilChanged, filter, from, fromEvent, map, mergeMap, of, switchMap, tap } from 'rxjs';
+import { concatMap, delay, distinct, distinctUntilChanged, exhaustMap, filter, from, fromEvent, map, mergeMap, of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -268,6 +268,15 @@ export class RxjsOperators implements AfterViewInit {
     })
   );
 
+  array47 = [1, 2, 3, 4, 5];
+  myobservable10 = from(this.array46);
+  exhaustMapRes = this.myobservable10.pipe(
+    exhaustMap((val: number) => {
+      return of(val * 2).pipe(delay(1000));
+    })
+  );
+
+
 
   // mergeMapRes.subscribe((res) => console.log('mergeMap Output:', res));
 
@@ -387,6 +396,25 @@ export class RxjsOperators implements AfterViewInit {
     else if (val === 'concatmap') {
       this.dataList2 = [];
       this.mergeMapRes.subscribe({
+        next: (value) => {
+          console.log(value, "merge map Final Emitted Output:");
+          if (value) {
+            this.dataList2 = [...this.dataList2, value];
+            this.cdr.markForCheck();
+          }
+          console.log(this.dataList2, "after");
+        },
+        error(err) {
+          alert(err.message)
+        },
+        complete() {
+          //alert("all the data is streamed");
+        },
+      })
+    }
+     else if (val === 'exhaustmap') {
+      this.dataList2 = [];
+      this.exhaustMapRes.subscribe({
         next: (value) => {
           console.log(value, "merge map Final Emitted Output:");
           if (value) {

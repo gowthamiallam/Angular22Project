@@ -91,3 +91,8 @@ Cancellation by switchMap: Every time switchMap receives a new value,
  Value 4 arrives -------> starts 1-second delay timer -------> immediately canceled when 5 arrives.
  Value 5 arrives -------> starts 1-second delay timer.
  Completion: Because no higher values arrive to cancel 5, its inner Observable finishes after the 1000 ms delay, executing the tap log and emitting 10 ($5 \times 2$).
+
+
+
+
+ 
