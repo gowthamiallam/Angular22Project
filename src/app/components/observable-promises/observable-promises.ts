@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, signal } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { MockService } from '../components/shared/mock-service';
+import { MockService } from '../shared/mock-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({

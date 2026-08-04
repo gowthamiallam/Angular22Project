@@ -8,7 +8,7 @@ import { SignalForms } from './components/signal-forms/signal-forms';
 import { ControlFlowstatements } from './components/control-flowstatements/control-flowstatements';
 import { LoginReactive } from './components/login-reactive/login-reactive';
 import { Hero } from './components/hero/hero';
-import { ObservablePromises } from './observable-promises/observable-promises';
+import { ObservablePromises } from './components/observable-promises/observable-promises';
 import { RxjsOperators } from './components/rxjs-operators/rxjs-operators';
 
 //routes are getting index so give empty path at first and wild card route at last 
