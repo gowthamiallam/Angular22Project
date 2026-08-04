@@ -1,1 +1,57 @@
-<p>rxjs-operators works!</p>
+<p>Rxjs operators we need to import from rxjs library</p>
+<p>These of and froms operators returns the Observable and observable will emit the data</p>
+<button class="btn btn-success" (click)="getStreamingOfData()">Data streaming</button>
+<br>
+
+@for(x of dataList;track $index){
+<div class="data-list">
+    {{x}}
+</div>
+}
+
+<hr>
+<p>how we can Create an observable from a domevent - using fromEvent Operator</p>
+<p>when this button is clicked it is going to emit an click event from that event we want to create an
+    observable for that we use fromEvent operator
+</p>
+<div id="container">
+
+</div>
+<button #createbtn class="btn btn-primary">Create New Item</button>
+
+<hr>
+
+<p>using map operator we can transform the data emitted by an source observable in some way</p>
+<p>if we want to use the operators map and filter on Observables we need to use pipe method</p>
+<p> //using the pipe operator/method we can chain multiple operators together eg;map,filter</p>
+<!-- <button class="btn btn-success" (click)="getData()">Map operator</button> -->
+<button class="btn btn-success" (click)="getData()">Filter operator</button>
+<br>
+
+@for(x of dataList1;track $index){
+<div class="data-list">
+    {{x}}
+</div>
+}
+<hr>
+
+<p>Creation operators </p>
+<button class="btn btn-success" (click)="getOperatorData('of')">of</button>&nbsp;
+<button class="btn btn-success" (click)="getOperatorData('from')">from</button>
+<hr>
+<p>Filtering operators </p>
+<button class="btn btn-success" (click)="getOperatorData('filter')">filter</button>&nbsp;
+<button class="btn btn-success" (click)="getOperatorData('distinct')">distinct / distinctuntilchanged</button>&nbsp;
+<hr>
+<p>Transformation operators </p>
+<button class="btn btn-success" (click)="getOperatorData('map')">map</button>&nbsp;
+<p>Flattening operators </p>
+<button class="btn btn-success" (click)="getOperatorData('switchmap')">switchmap</button>&nbsp;
+<button class="btn btn-success" (click)="getOperatorData('mergemap')">mergemap</button>&nbsp;
+<button class="btn btn-success" (click)="getOperatorData('concatmap')">concatmap</button>&nbsp;
+<hr>
+@for(x of dataList2;track $index){
+<div class="data-list">
+    {{x}}
+</div>
+}

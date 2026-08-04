@@ -1,0 +1,93 @@
+Use switchMap when you only care about the latest emission (e.g., search, dropdown dependencies, route updates).
+
+Use mergeMap when every request must execute concurrently and order doesn't matter (e.g., multi-file uploads, parallel API calls).
+
+Use switchMap when you only care about the latest emission (e.g., search, dropdown dependencies, route updates).
+
+Use mergeMap when every request must execute concurrently and order doesn't matter (e.g., multi-file uploads, parallel API calls).
+
+Use concatMap if every request must finish, but they must run sequentially in strict order.
+
+Use exhaustMap if you want to ignore new outer values while an inner operation is active (e.g., preventing double button clicks).
+
+
+
+
+
+The primary difference between switchMap and mergeMap in RxJS lies in how they handle active inner observables when a new outer emission arrives:
+
+ 1.switchMap cancels the previous inner observable subscription, 
+ 2switch map cancells the previous observables and emits the latest one
+ 
+1.mergeMap maintains concurrent subscriptions to all inner observables until they complete.
+
+
+
+merge map 
+
+
+
+concatmap
+
+The output values emitted by concatMapRes when subscribed to will be 2, 4, 6, 8, 10, emitted one by one at 1-second intervals.
+
+Output Emission Timeline
+At ~1 second: 2
+
+At ~2 seconds: 4
+
+At ~3 seconds: 6
+
+At ~4 seconds: 8
+
+At ~5 seconds: 10
+
+How It Works
+from(this.array46): Emits the source values 1, 2, 3, 4, 5 sequentially into the pipe.
+
+concatMap: Subscribes to each inner Observable one at a time in strict order, waiting for the current inner Observable to complete before moving to the next.
+
+of(val * 2).pipe(delay(1000)):
+
+Multiplies each number by 2.
+
+Delays the emission by 1000 ms (1 second).
+
+Because concatMap executes sequentially rather than in parallel, the 1-second delays accumulate, producing a steady tick of one multiplied value every second.
+
+
+
+
+mergemap
+ 
+The output values emitted by mergeMapRes will be 2, 4, 6, 8, 10, all emitted at the same time after 1 second.
+
+Output Emission Timeline
+At 0 seconds: Nothing is emitted (all 5 inner Observables are triggered concurrently).
+
+At ~1 second: 2, 4, 6, 8, 10 are emitted in rapid succession (effectively simultaneously).
+
+Key Difference from concatMap
+concatMap (Sequential): Subscribes to one inner Observable at a time, waiting for each to complete before starting the next. Total time: ~5 seconds.
+
+mergeMap (Parallel): Subscribes to all 5 inner Observables immediately at the same time. Since each has a 1-second delay running concurrently, all 5 complete and emit around the same 1-second mark. Total time: ~1 second.
+
+
+
+
+
+
+Subscribed Observable Emission (switchmapres):
+At ~1 second: 10
+
+Why This Happens
+Immediate Synchronous Emission: from([1, 2, 3, 4, 5]) emits all five values synchronously one right after another at time $t = 0$.
+
+Cancellation by switchMap: Every time switchMap receives a new value,
+ it cancels/unsubscribes from the previous inner Observable and switches to the new one:
+ Value 1 arrives -------> starts 1-second delay timer -------> immediately canceled when 2 arrives.
+ Value 2 arrives -------> starts 1-second delay timer -------> immediately canceled when 3 arrives.
+ Value 3 arrives -------> starts 1-second delay timer -------> immediately canceled when 4 arrives.
+ Value 4 arrives -------> starts 1-second delay timer -------> immediately canceled when 5 arrives.
+ Value 5 arrives -------> starts 1-second delay timer.
+ Completion: Because no higher values arrive to cancel 5, its inner Observable finishes after the 1000 ms delay, executing the tap log and emitting 10 ($5 \times 2$).

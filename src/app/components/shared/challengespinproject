@@ -24,3 +24,13 @@ here to udpate the ui
  because the ui is not updating when i set the settimeout in observable
 
   as well as we can use signals to get rid of change detection cycle settimeout
+
+
+
+
+
+  7. when using view child i got error then i change the tsconfig settings
+  strict property to false
+
+
+  
