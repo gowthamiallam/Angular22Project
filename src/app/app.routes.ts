@@ -10,15 +10,21 @@ import { LoginReactive } from './components/login-reactive/login-reactive';
 import { Hero } from './components/hero/hero';
 import { ObservablePromises } from './components/observable-promises/observable-promises';
 import { RxjsOperators } from './components/rxjs-operators/rxjs-operators';
+import { Tasks } from './components/tasks/tasks';
 
 //routes are getting index so give empty path at first and wild card route at last 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'login',  //this is Default route
-        pathMatch: 'full'           // if the url is empty we need to navigate to databinding comp
+        component: Tasks
     },
-    
+    //keep this line first only incase any changes required keep it above in case of empty path
+    // {
+    //     path: '',
+    //     redirectTo: 'login',  //this is Default route
+    //     pathMatch: 'full'           // if the url is empty we need to navigate to databinding comp
+    // },
+
     {
         path: 'variables',
         component: Variables       //this is Normal route 
@@ -102,7 +108,7 @@ export const routes: Routes = [
     },
     {
         path: 'rxjs-operators',
-        component: RxjsOperators      
+        component: RxjsOperators
     },
     {
         path: '**',           //this is WildCard  route

@@ -1,0 +1,8 @@
+.create-task-container {
+    margin: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 20px;
+    border-radius: red 10px;
+    border-radius: 15px;
+    background: purple;
+    height: 100px;
+}

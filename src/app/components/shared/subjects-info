@@ -1,0 +1,42 @@
+What is subject in RxJS?
+
+A subject is a special type of observable that allows values to be multicasted to many observers.
+Subjects are like EventEmitters.
+
+
+So using subject we can emit some data and that data can be subscribed by many observers.
+
+Why we use subject in RXJS?
+
+The main purpose of using a subject is to make cross component communication.
+so using subject the cross component communication is very easy.
+
+
+How can you send data between sibling components ?
+as there is no parent child communication so
+ we can send data between sibling components or different components or non-related components 
+ 1.using services and EventEmitters 
+ 2.subjects also 
+
+
+
+ Using services and EventEmitters we can pass data from 1 component to another component even though those components are
+ not realted.
+
+ Subjects are similar to EventEmitters.
+
+usecase of subject 
+ Using subject it is easier to do cross component communication.
+
+ Subject allows multicasting - using  subject we can pass data to multiple observers (multiple components)
+
+REQUIREMENT
+ if we want to pass same data from 1 component to multiple components 
+ in that case we will have to create observers inside each component
+ in that case for this subject there will be multiple observers and using subject we can pass data to multiple observers
+ and that's y it is called as multicaste observable.
+
+
+
+
+
