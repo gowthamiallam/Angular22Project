@@ -9,12 +9,12 @@ export class TaskService {
     //This event must be raised when something happens
 
     //Create a subject 
-    createTask = new Subject<string>();  //what type of data that subject that special type of observable is going to emit
+    createTasksubject = new Subject<string>();  //what type of data that subject that special type of observable is going to emit
 
     //To raise this event call another method
     onCreateTaskMethod(val: string) {
         // this.createTask.emit(val);   // use when using event  line 8
-        this.createTask.next(val);     //use when using subject (here using next method to emit value from subject )
+        this.createTasksubject.next(val);     //use when using subject (here using next method to emit value from subject )
     }
 
     //we are able to pass data from 1 component (new-task) to another component (show-task) using services and eventemitter seven though they are not related not parent child 

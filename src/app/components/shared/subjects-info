@@ -1,3 +1,5 @@
+1.
+
 What is subject in RxJS?
 
 A subject is a special type of observable that allows values to be multicasted to many observers.
@@ -6,11 +8,26 @@ Subjects are like EventEmitters.
 
 So using subject we can emit some data and that data can be subscribed by many observers.
 
+5.Usecase of subject 
+
+
+ we can use subject for cross component communication
+ Using subject it is easier to do cross component communication.
+
+ Subject allows multicasting - using  subject we can pass data to multiple observers (multiple components)
+
+ subject will not have initial value
+
+2.
+
 Why we use subject in RXJS?
 
-The main purpose of using a subject is to make cross component communication.
+The main purpose of using a subject is to make cross component communication (passing data from 1 component to another 
+/multiple components).
 so using subject the cross component communication is very easy.
 
+
+3.
 
 How can you send data between sibling components ?
 as there is no parent child communication so
@@ -19,24 +36,38 @@ as there is no parent child communication so
  2.subjects also 
 
 
-
+4.
  Using services and EventEmitters we can pass data from 1 component to another component even though those components are
  not realted.
 
  Subjects are similar to EventEmitters.
 
-usecase of subject 
+5.Usecase of subject 
+
+
+ we can use subject for cross component communication
  Using subject it is easier to do cross component communication.
 
  Subject allows multicasting - using  subject we can pass data to multiple observers (multiple components)
 
-REQUIREMENT
+ subject will not have initial value
+
+
+6.
+REQUIREMENT of subject
  if we want to pass same data from 1 component to multiple components 
  in that case we will have to create observers inside each component
  in that case for this subject there will be multiple observers and using subject we can pass data to multiple observers
  and that's y it is called as multicaste observable.
 
 
+7.
+observables are unicaste - pass data from 1 component to another component
+subject is multicaste  -pass data from 1 to multiple components
 
 
 
+
+
+we can use subject for cross component communication as we can use observable also 
+but difference will be there check the differences in other file.

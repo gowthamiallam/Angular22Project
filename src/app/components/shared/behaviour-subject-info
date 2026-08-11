@@ -1,0 +1,9 @@
+What is Behaviour Subject ?
+A Behaviour subject is a subject which can hold an initial value which it emits if no new value is emitted.
+it means it emits that initial value when there is no new value to emit for a subscriber.
+
+
+
+A Behaviour subject emits an initial value or last emitted value for a new subscriber.
+basically a behaviour subject will emit an inital value or last emitted value for a new subscriber.
+

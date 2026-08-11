@@ -1,0 +1,46 @@
+Difference between observable vs subject ?
+
+
+a subject is multicast.
+on the other hand an observable is unicaste.
+
+
+
+
+
+  // difference 1
+
+  //observable -it is a unicaste
+  //observable - it does not always emit the same value or data for all its subscribers
+
+  //subject -it is a multicaste
+  //subject - it  emits the same data  or value for all its subscribers
+
+  //depending on the use case use observable or subject (if you want to emit the same for all the subscibers)
+
+  // difference 2
+
+  //observable -an observable always provide some data  or emit some data 
+  //observable - 
+
+  //subject -subject is a data provider / provide some data as well as data consumer /consuming the data 
+  //subject - 
+
+
+  usecase:
+
+  use observable in case of -different data 
+  use subject in case of -same  data 
+
+
+ use observable in case of -api call will call multiple times but sending the same data 
+  use subject in case of -api call will call single time we are getting the data if more subscribers are there
+
+
+  suppose i have 2 subscribers and subscribing to an http get request call but that response is same data
+
+  in case of observables - api call will hit multiple times 
+
+  in case of subject - api call will hit 1 time -
+
+

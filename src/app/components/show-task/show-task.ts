@@ -20,7 +20,7 @@ export class ShowTask implements OnInit {
   //subscribe to the createTask Event emitter not the method in service 
   //subscriber1 in this component
   getTaskList() {
-    this.taskService.createTask.subscribe((val) => {
+    this.taskService.createTasksubject.subscribe((val) => {
       console.log(val)
       console.log(this.taskList)
       this.taskList.push(val);
