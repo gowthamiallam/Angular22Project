@@ -1,0 +1,6 @@
+<h2 class="parent-data">THIS IS PARENT COMPONENT</h2>
+<p>Received data from child using @output decorator </p>
+<p>GETTING THE  DATA FROM CHILD USING CLICK EVENT  : <b>{{data}}</b></p>
+
+<hr>
+<app-child-component [childdata]="title" (childbtndata)="receivedData()"></app-child-component>

@@ -31,6 +31,9 @@ export class Comp2 implements OnInit {
   }
 
   observableConcept() {
+    //OBSERVABLES ARE UNICAST 
+    //OBSERVABLES WILL NOT EMIT SAME DATA 
+
     //Observable will not emit same data in case of random sometimes
 
     let myobservable = new Observable((observer) => {
@@ -45,8 +48,11 @@ export class Comp2 implements OnInit {
     myobservable.subscribe((data) => { console.log(data, "TEST1-obs",) });    //Subscriber 2 or component 2
   }
   subjectConcept() {
+    //SUBJECT ARE MULTICAST
+    //SUBJECT WILL EMIT THE SAME DATA  
+    //WHEN SUBJECT EMIT THE DATA THE DATA WILL BE SUBSCRIBED BY THE MANY SUBSCRIBERS AND GET THE SAME VALUE ALMOST
+    
     //SUBJECT DOES NOT HOLD THE INITIAL VALUE ONCE THE NEW VALUE IS EMITTED THE NEW SUBSCRIBER DOES NOT GET THE LATEST VALUE
-    //Subject will emit same data 
 
     const subject = new Subject();
 
@@ -63,7 +69,9 @@ export class Comp2 implements OnInit {
   }
 
   behaviourSubjectConcept() {
+
     //BEHAVIOUR HOLD THE INITIAL VALUE WHEN THERE IS NO NEW VALUE EMIT FOR A SUBSCRIBER
+
     const behaviourSubject = new BehaviorSubject<number>(100);
 
     behaviourSubject.subscribe((data) => { console.log(data, "SUBSCRIBER :1") }); //Subscriber 1 or component 1
@@ -72,7 +80,8 @@ export class Comp2 implements OnInit {
 
     behaviourSubject.next(2020);
 
-    //NEW SUBSCRIBER HOLD THE LATEST EMITTED VALUE NOT AN INITIAL VALUE
+    //ONCE THE BEHAVIOUR SUBJECT EMIT THE DATA
+    // THE NEW SUBSCRIBER HOLD THE LAST EMITTED VALUE NOT AN INITIAL VALUE
 
     behaviourSubject.subscribe((data) => { console.log(data, "SUBSCRIBER :3") });
 
