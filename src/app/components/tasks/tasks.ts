@@ -11,9 +11,10 @@ import { ParentComponent } from '../parent-component/parent-component';
 // NewTask,ShowTask
 //Subjectcomponent
 // Comp2,Comp1
+// ParentComponent
 @Component({
   selector: 'app-tasks',
-  imports: [ParentComponent],
+  imports: [Comp2,Comp1],
   templateUrl: './tasks.html',
   styleUrl: './tasks.css',
 })

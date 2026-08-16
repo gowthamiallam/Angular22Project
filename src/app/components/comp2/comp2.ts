@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SharedService } from '../shared/shared-service';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { AsyncSubject, BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-comp2',
@@ -17,7 +17,9 @@ export class Comp2 implements OnInit {
     // this.getData();
     // this.observableConcept();
     // this.subjectConcept();
-    this.behaviourSubjectConcept();
+    // this.behaviourSubjectConcept();
+    // this.replaySubjectConcept();
+    this.asyncSubjectConcept();
   }
 
   getData() {
@@ -51,7 +53,7 @@ export class Comp2 implements OnInit {
     //SUBJECT ARE MULTICAST
     //SUBJECT WILL EMIT THE SAME DATA  
     //WHEN SUBJECT EMIT THE DATA THE DATA WILL BE SUBSCRIBED BY THE MANY SUBSCRIBERS AND GET THE SAME VALUE ALMOST
-    
+
     //SUBJECT DOES NOT HOLD THE INITIAL VALUE ONCE THE NEW VALUE IS EMITTED THE NEW SUBSCRIBER DOES NOT GET THE LATEST VALUE
 
     const subject = new Subject();
@@ -87,6 +89,68 @@ export class Comp2 implements OnInit {
 
     behaviourSubject.next(2023);
 
+
+  }
+
+  replaySubjectConcept() {
+
+    // REPLAY SUBJECT REPLAYS OLD VALUES TO NEW SUBSCRIBERS WHEN THEY FIRST SUBSCRIBE
+    //REPLAY SUBJECT STORES THE OLD VALUES IN BUFFER
+    //BUFFER SIZE (1ST ARGUMENT) - TELLS HOW MANY PREVIOUSLY EMITTED DATA NEED TO STORE IN THE BUFFER
+    //WINDOW TIME (2ND ARGUMENT) SPECIFIES TIME INTERVAL -TELLS HOW LONG WE WANT TO STORE THE PREVIOUSLY
+    //EMITTED IN THE BUFFER
+
+
+
+    // const replaysub = new Subject();  //check the difference
+    // const replaysub = new ReplaySubject();
+    // const replaysub = new ReplaySubject(2); //buffer size given is 2 so will get the last 2 old value from buffer
+    const replaysub = new ReplaySubject(2, 1000); // The amount of time to keep the values in the buffer
+
+    replaysub.next(100);
+    replaysub.next(200);
+    replaysub.next(300);
+
+    //SUBSCRIBER 1
+    replaysub.subscribe((data) => { console.log(data, "SUBSCRIBER 1") });
+
+    //SUBSCRIBER 2
+    replaysub.subscribe((data) => { console.log(data, "SUBSCRIBER 2") });
+
+    replaysub.next(2020);
+
+    //SUBSCRIBER 3
+    replaysub.subscribe((data) => { console.log(data, "SUBSCRIBER 3") });
+
+    replaysub.next(2023);
+  }
+
+  asyncSubjectConcept() {
+    //ASYNC SUBJECT  IS GOING TO EMIT THE LAST EMITTED VALUE TO ALL ITS SUBSCRIBERS
+
+    //ASYNC SUBJECT IS WILL ONLY EMIT THE LAST EMITTED VALUE TO ALL ITS SUBSCRIBERS ONLY AFTER COMPLETE METHOD.
+
+    const asyncsub = new AsyncSubject();
+
+    asyncsub.next(100);
+    asyncsub.next(200);
+    asyncsub.next(300);
+
+    // asyncsub.complete(); //LATEST VALUE IS 300
+
+    // asyncsub.next(2020); //ONCE THE COMPLETE SIGNAL IS CALLED NO VALUE WILL BE EMITTED IN CASE OF ASYNC SUBJECT OR OBSERVABLE ALSO
+
+    //SUBSCRIBER 1
+    asyncsub.subscribe((data) => { console.log(data, "SUBSCRIBER 1") });
+
+
+
+    asyncsub.complete(); // LATEST VALUE IS 300
+    asyncsub.next(400); //ONCE THE COMPLETE SIGNAL IS CALLED NO VALUE WILL BE EMITTED IN CASE OF ASYNC SUBJECT OR OBSERVABLE ALSO
+    asyncsub.complete(); // THIS COMPLETE SIGNAL WILL BE IGNORED
+
+    //SUBSCRIBER 2
+    asyncsub.subscribe((data) => { console.log(data, "SUBSCRIBER 2") });
 
   }
 }

@@ -1,0 +1,10 @@
+Replay subject replays old values to new subscribers when they first subscribe.
+
+The replay subject will store every value it emits in a buffer.
+it will emit them to the new subscribers in the order it recieved them.
+you can configure the buffer using the arguments buffersize and window time.
+
+buffer size : no of items that replay subject will keep in its buffer
+if defaults to infinity
+
+window time : the amount of time to keep the value in the buffer.defaults to infinity.
