@@ -1,0 +1,35 @@
+Promises -we use promises to handle asynchronous data 
+Observables -we use Observables also to handle asynchronous data.
+
+Differences 
+When we need to use promises to handle asynchronous data ?
+
+Promise -
+
+1.A promise is native to javascript
+
+2.Promise is eager.
+It returns the data as soon as a promise is created.
+
+3.Promise can emit only a single value.
+
+4.Promise has methods for success and error.
+
+5.Promise always returns asynchrnous data .
+
+When we need to use promises to handle asynchronous data ?
+
+Observable -
+
+1.An observable is not native to javascript.
+It is provided by a third party library called RXJS.
+
+2.Observable is lazy.
+It only emits the data if there is a subscriber for that observable.
+
+3.Observables can emit single or multiple values.
+
+4.Observables has methods for success,error and completion.
+
+5.An observable can return both synchronous and asynchronous data based on
+how it is implemented 

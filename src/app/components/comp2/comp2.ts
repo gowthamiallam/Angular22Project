@@ -19,7 +19,8 @@ export class Comp2 implements OnInit {
     // this.subjectConcept();
     // this.behaviourSubjectConcept();
     // this.replaySubjectConcept();
-    this.asyncSubjectConcept();
+    // this.asyncSubjectConcept();
+    this.promiseObservableDifference();
   }
 
   getData() {
@@ -153,4 +154,62 @@ export class Comp2 implements OnInit {
     asyncsub.subscribe((data) => { console.log(data, "SUBSCRIBER 2") });
 
   }
+
+
+
+  //Promise vs Observable
+
+  promiseObservableDifference() {
+    //promise is native to javascript no need to import from third party library
+    //as soon as the promise is created this resolve,reject call back function will execute immediately
+    //so the promise is eager 
+
+    //PROMISE  WILL RETURN SINGLE VALUE AT AT TIME IT WILL NOT EMIT MULTIPLE VALUES OR THE STREAM OF DATA
+    //PROMISE WILL EMIT ONE VALUE AT A TIME
+
+    //PROMISE WILL  EMIT A DATA 
+    // EMIT A DATA -WE USE RESOLVE METHOD FOR SUCCESS 
+    // EMIT A ERROR DATA  -WE USE REJECT METHOD FOR ERROR 
+
+    const promise = new Promise((resolve, reject) => {
+      console.log('Promise is called');
+      resolve(100);      //100 ONLY RETURN ONLY SINGLE VALUE 200 300 WILL NOT EMIT
+      resolve(200);
+      resolve(300);
+      resolve(400);
+
+    })
+
+    //WE NEED TO USE THEN METHOD IF WE WANT TO USE THE PROMISE VALUE 
+    promise.then((data) => {
+      console.log(data, "PROMISE VALUE");
+    })
+
+
+    //observable  is not native to javascript  need to import from third party library rxjs 
+    //as soon as the observable is created this observer call back function will not execute immediately
+    //it will execute only if there is an subscriber or observer is there.
+    //so observable is lazy
+
+    //OBSERVABLE  WILL RETURN MULTIPLE VALUES AT AT TIME AND THE STREAM OF DATA
+    //OBSERVABLE WILL EMIT MULTIPLE VALUES AT AT TIME
+
+
+
+    //OBSERVABLE WILL EMIT A DATA 
+    // EMIT A DATA -WE USE  NEXT METHOD FOR SUCCESS  
+    // EMIT A ERROR DATA -WE USE  ERROR METHOD FOR ERROR
+    // EMIT A COMPLETE SIGNAL -WE USE  COMPLETE METHOD FOR COMPLETION
+    const myobservable = new Observable((observer) => {
+      console.log('Observable is called');
+      observer.next(100);
+      observer.next(200);
+      observer.next(300);
+      observer.next(400);
+      observer.next(500);
+    });
+
+    myobservable.subscribe((data) => { console.log(data, "OBSERVABLE"); })  //SUBSCRIBER 1
+  }
+
 }
